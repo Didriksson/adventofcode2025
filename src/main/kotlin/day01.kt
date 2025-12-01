@@ -8,20 +8,20 @@ class Day01 {
 
     fun part1(input: List<String>, start: Int): Int {
         return input.fold(Pair(0, start))
-            { acc, line -> performA(line, acc) }.first
+        { acc, line -> performA(line, acc) }.first
     }
 
     fun part2(input: List<String>, start: Int): Int {
         return input.fold(Pair(0, start))
-            { acc, line -> performB(line, acc) }.first
+        { acc, line -> performB(line, acc) }.first
     }
 
     fun turn(instruction: String, dial: Dial): Pair<Int, Int> {
         val direction = instruction.take(1)
         val steps = instruction.drop(1).toInt()
 
-        val lapses = steps / 100;
-        val rest = steps.mod(100);
+        val lapses = steps / 100
+        val rest = steps.mod(100)
 
 
         val newDial = if (direction == "L") {
@@ -30,10 +30,10 @@ class Day01 {
             dial + rest
         }
 
-        return if (newDial !in 0..99){
-            Pair(newDial, lapses + 1)
-        } else {
+        return if (dial == 0 || newDial in 1..99){
             Pair(newDial, lapses)
+        } else {
+            Pair(newDial, lapses + 1)
         }
     }
 
