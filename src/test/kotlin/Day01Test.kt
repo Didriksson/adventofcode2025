@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions.*
-import se.lantmateriet.digitalansokan.Day01
 import kotlin.io.path.Path
 import kotlin.io.path.readText
 import kotlin.test.Test

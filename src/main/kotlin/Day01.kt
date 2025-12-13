@@ -1,6 +1,3 @@
-package se.lantmateriet.digitalansokan
-
-
 typealias Dial = Int
 
 class Day01 {
