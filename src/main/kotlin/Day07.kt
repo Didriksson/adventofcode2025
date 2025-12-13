@@ -48,6 +48,7 @@ class Day07 {
         val counts = countPathsDag(map, toEval.key, width, height)
         return counts
     }
+
     private fun countPathsDag(graph: Map<Pair<Int, Int>, Char>, start: Pair<Int, Int>, width: Int, height: Int): Long {
         val counts = mutableMapOf<Pair<Int,Int>, Long>()
         val (startX, startY) = start
