@@ -1,3 +1,5 @@
+import java.awt.geom.Path2D
+import java.awt.geom.Rectangle2D
 import kotlin.math.abs
 
 class Day09 {
@@ -20,6 +22,40 @@ class Day09 {
         val sortedWith = listOf(p1,p2).sortedWith(compareBy({ it.first }, { it.second }))
         return Pair(sortedWith[0], sortedWith[1])
     }
+
+    fun part2(exampleInput: List<String>): Long {
+        val polygon = exampleInput.parse().toSet()
+        val pairs = polygon.flatMap { c1 ->
+            polygon.filter { c2 -> c1 != c2 }.map { c2 -> sortera(c1, c2) }
+        }.toSet()
+
+
+        val path = Path2D.Double()
+        path.moveTo(polygon.first().first.toDouble(), polygon.first().second.toDouble())
+        polygon.drop(1).forEach { pp -> path.lineTo(pp.first.toDouble(), pp.second.toDouble()) }
+        path.closePath()
+
+        val areas = pairs
+            .map { calculateArea(it) }
+            .filter{allPointsInpolygon(it.first, path) }
+
+        return areas.maxBy { it.second }.second
+    }
+
+    private fun allPointsInpolygon(it: Pair<Pair<Long, Long>, Pair<Long, Long>>, path: Path2D.Double): Boolean {
+        val (coord1, coord2) = it
+        val minX = minOf(coord1.first, coord2.first)
+        val maxX = maxOf(coord1.first, coord2.first)
+        val minY = minOf(coord1.second, coord2.second)
+        val maxY = maxOf(coord1.second, coord2.second)
+        val width = maxX - minX
+        val height = maxY - minY
+        val rectangle = Rectangle2D.Double(minX.toDouble(), minY.toDouble(), width.toDouble(), height.toDouble())
+
+        return path.contains(rectangle)
+
+    }
+
 
 }
 

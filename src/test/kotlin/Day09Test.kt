@@ -23,10 +23,29 @@ class Day09Test {
     }
 
     @Test
+    fun example2() {
+        val exampleInput = """
+            7,1
+            11,1
+            11,7
+            9,7
+            9,5
+            2,5
+            2,3
+            7,3
+        """.trimIndent().lines()
+        val day = Day09()
+        val result = day.part2(exampleInput)
+        assertEquals(24, result)
+    }
+
+    @Test
     fun runPart1and2() {
         val input = Path("src/input.txt").readText().trim().lines()
         val part1 = Day09().part1(input)
+        val part2 = Day09().part2(input)
         println("Result $part1")
+        println("Result $part2")
     }
 
 }
