@@ -50,8 +50,8 @@ class Day11Test {
     fun runPart1and2() {
         val input = Path("src/input.txt").readText().trim().lines()
         val part1 = Day11().part1(input)
-        val part2 = Day11().part2(input)
         println("Result $part1")
+        val part2 = Day11().part2(input)
         println("Result $part2")
     }
 }
